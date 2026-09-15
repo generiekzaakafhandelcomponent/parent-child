@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.sampleplugin.plugin
+package com.ritense.valtimoplugins.parentchild.plugin
 
 import com.ritense.plugin.PluginFactory
 import com.ritense.plugin.service.PluginService
 import com.ritense.valtimo.contract.annotation.SkipComponentScan
-import com.ritense.valtimoplugins.sampleplugin.client.SampleService
+import com.ritense.valtimoplugins.parentchild.client.ParentChildService
 import org.springframework.stereotype.Component
 
 /**
- * Factory class to create instances of the SamplePlugin.
+ * Factory class to create instances of the ParentChildPlugin.
  * This is required for the plugin framework to instantiate the plugin.
  */
 @SkipComponentScan
 @Component
-class SamplePluginFactory(
+class ParentChildPluginFactory(
     pluginService: PluginService,
-    val sampleService: SampleService,
-) : PluginFactory<SamplePlugin>(pluginService) {
-    override fun create(): SamplePlugin = SamplePlugin(sampleService)
+    val parentChildService: ParentChildService,
+) : PluginFactory<ParentChildPlugin>(pluginService) {
+    override fun create(): ParentChildPlugin = ParentChildPlugin(parentChildService)
 }

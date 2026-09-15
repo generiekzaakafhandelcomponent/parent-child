@@ -15,55 +15,55 @@
  */
 
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from "@angular/core";
-import {PluginConfigurationComponent, PluginConfigurationData} from "@valtimo/plugin";
-import {BehaviorSubject, combineLatest, Observable, Subscription, take} from "rxjs";
-import {SamplePluginConfig} from "../../models";
+import {FunctionConfigurationComponent, FunctionConfigurationData} from "@valtimo/plugin";
+import {BehaviorSubject, combineLatest, Observable, Subscription, switchMap, take} from "rxjs";
+import {ParentChildActionConfig} from "../../models";
 
 @Component({
   standalone: false,
-  selector: "valtimo-sample-plugin-configuration",
-  templateUrl: "./sample-plugin-configuration.component.html",
+  selector: "valtimo-parent-child-action-configuration",
+  templateUrl: "./parent-child-action-configuration.component.html",
 })
-export class SamplePluginConfigurationComponent implements PluginConfigurationComponent, OnInit, OnDestroy {
+export class ParentChildActionConfigurationComponent implements FunctionConfigurationComponent, OnInit, OnDestroy {
   @Input() save$!: Observable<void>;
   @Input() disabled$!: Observable<boolean>;
   @Input() pluginId!: string;
-  @Input() prefillConfiguration$!: Observable<SamplePluginConfig>;
+  @Input() prefillConfiguration$!: Observable<ParentChildActionConfig>;
   @Output() valid: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() configuration: EventEmitter<PluginConfigurationData> = new EventEmitter<PluginConfigurationData>();
+  @Output() configuration: EventEmitter<FunctionConfigurationData> = new EventEmitter<FunctionConfigurationData>();
 
   private saveSubscription!: Subscription;
-  private readonly formValue$ = new BehaviorSubject<SamplePluginConfig | null>(null);
+  private readonly formValue$ = new BehaviorSubject<ParentChildActionConfig | null>(null);
   private readonly valid$ = new BehaviorSubject<boolean>(false);
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.openSaveSubscription();
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.saveSubscription?.unsubscribe();
   }
 
-  formValueChange(formValue: SamplePluginConfig): void {
+  public formValueChange(formValue: ParentChildActionConfig): void {
     this.formValue$.next(formValue);
     this.handleValid(formValue);
   }
 
-  private handleValid(formValue: SamplePluginConfig): void {
-    const valid = !!(formValue.configurationTitle && formValue.apiUrl);
+  private handleValid(formValue: ParentChildActionConfig): void {
+    const valid = !!formValue.message;
     this.valid$.next(valid);
     this.valid.emit(valid);
   }
 
   private openSaveSubscription(): void {
-    this.saveSubscription = this.save$?.subscribe(() => {
-      combineLatest([this.formValue$, this.valid$])
-        .pipe(take(1))
-        .subscribe(([formValue, valid]) => {
-          if (valid) {
-            this.configuration.emit(formValue!);
-          }
-        });
-    });
+    this.saveSubscription = this.save$
+      ?.pipe(
+        switchMap(() => combineLatest([this.formValue$, this.valid$]).pipe(take(1)))
+      )
+      .subscribe(([formValue, valid]) => {
+        if (valid) {
+          this.configuration.emit(formValue!);
+        }
+      });
   }
 }

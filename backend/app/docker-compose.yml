@@ -1,4 +1,4 @@
-name: plugin-docker-compose
+name: parent-child-plugin
 
 services:
   plugin-keycloak:

@@ -14,30 +14,30 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.sampleplugin.autoconfiguration
+package com.ritense.valtimoplugins.parentchild.autoconfiguration
 
 import com.ritense.plugin.service.PluginService
-import com.ritense.valtimoplugins.sampleplugin.client.SampleClient
-import com.ritense.valtimoplugins.sampleplugin.client.SampleService
-import com.ritense.valtimoplugins.sampleplugin.plugin.SamplePluginFactory
+import com.ritense.valtimoplugins.parentchild.client.ParentChildClient
+import com.ritense.valtimoplugins.parentchild.client.ParentChildService
+import com.ritense.valtimoplugins.parentchild.plugin.ParentChildPluginFactory
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 
 @AutoConfiguration
-class SampleAutoConfiguration {
+class ParentChildAutoConfiguration {
     @Bean
-    @ConditionalOnMissingBean(SampleClient::class)
-    fun sampleClient(): SampleClient = SampleClient()
+    @ConditionalOnMissingBean(ParentChildClient::class)
+    fun parentChildClient(): ParentChildClient = ParentChildClient()
 
     @Bean
-    @ConditionalOnMissingBean(SampleService::class)
-    fun sampleService(sampleClient: SampleClient): SampleService = SampleService(sampleClient)
+    @ConditionalOnMissingBean(ParentChildService::class)
+    fun parentChildService(parentChildClient: ParentChildClient): ParentChildService = ParentChildService(parentChildClient)
 
     @Bean
-    @ConditionalOnMissingBean(SamplePluginFactory::class)
-    fun samplePluginFactory(
+    @ConditionalOnMissingBean(ParentChildPluginFactory::class)
+    fun parentChildPluginFactory(
         pluginService: PluginService,
-        sampleService: SampleService,
-    ): SamplePluginFactory = SamplePluginFactory(pluginService, sampleService)
+        parentChildService: ParentChildService,
+    ): ParentChildPluginFactory = ParentChildPluginFactory(pluginService, parentChildService)
 }

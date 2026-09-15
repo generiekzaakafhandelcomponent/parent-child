@@ -18,13 +18,13 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {PluginTranslatePipeModule} from "@valtimo/plugin";
 import {FormModule, InputModule as ValtimoInputModule} from "@valtimo/components";
-import {SamplePluginConfigurationComponent} from "./components/sample-plugin-configuration/sample-plugin-configuration.component";
-import {SampleActionConfigurationComponent} from "./components/sample-action-configuration/sample-action-configuration.component";
+import {ParentChildPluginConfigurationComponent} from "./components/parent-child-plugin-configuration/parent-child-plugin-configuration.component";
+import {ParentChildActionConfigurationComponent} from "./components/parent-child-action-configuration/parent-child-action-configuration.component";
 
 @NgModule({
-  declarations: [SamplePluginConfigurationComponent, SampleActionConfigurationComponent],
+  declarations: [ParentChildPluginConfigurationComponent, ParentChildActionConfigurationComponent],
   imports: [CommonModule, PluginTranslatePipeModule, FormModule, ValtimoInputModule],
-  exports: [SamplePluginConfigurationComponent, SampleActionConfigurationComponent],
+  exports: [ParentChildPluginConfigurationComponent, ParentChildActionConfigurationComponent],
 })
-export class SamplePluginModule {
+export class ParentChildPluginModule {
 }

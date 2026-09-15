@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.sampleplugin.client
+package com.ritense.valtimoplugins.parentchild.client
 
 import com.ritense.valtimo.contract.annotation.SkipComponentScan
 import org.springframework.stereotype.Service
 
 @SkipComponentScan
 @Service
-class SampleService(
-    private val sampleClient: SampleClient,
+class ParentChildService(
+    private val parentChildClient: ParentChildClient,
 ) {
     fun printAPIResults(apiUrl: String): String {
-        val apiResponse = sampleClient.fetchTimeAPI(apiUrl)
+        val apiResponse = parentChildClient.fetchTimeAPI(apiUrl)
 
         if (apiResponse.error != null) {
             return "Failed: ${apiResponse.error}"

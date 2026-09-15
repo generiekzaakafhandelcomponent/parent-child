@@ -1,7 +1,7 @@
 # Getting Started
 
 1. Copy this project
-2. Rename the module from `sample-plugin` to your plugin name
+2. Rename the module from `parent-child-plugin` to your plugin name
 3. Update package names, class names, and plugin keys
 4. Add your own plugin logic and actions
 

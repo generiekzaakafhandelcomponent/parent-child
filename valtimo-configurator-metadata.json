@@ -1,17 +1,17 @@
 {
-    "name": "sample-plugin",
+    "name": "parent-child-plugin",
     "version": 1,
     "backend": [
         {
-            "import": "com.ritense.valtimoplugins:sample-plugin"
+            "import": "com.ritense.valtimoplugins:parent-child-plugin"
         }
     ],
     "frontend": {
-        "import": "@valtimo-plugins/sample-plugin",
+        "import": "@valtimo-plugins/parent-child-plugin",
         "codeAdditions": [
             {
-                "spec": "samplePluginSpecification",
-                "module": "SamplePluginModule"
+                "spec": "parentChildPluginSpecification",
+                "module": "ParentChildPluginModule"
             }
         ]
     }

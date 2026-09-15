@@ -15,21 +15,21 @@
  */
 
 import {PluginSpecification} from "@valtimo/plugin";
-import {SamplePluginConfigurationComponent} from "./components/sample-plugin-configuration/sample-plugin-configuration.component";
-import {SAMPLE_PLUGIN_LOGO_BASE64} from "./assets";
-import {SampleActionConfigurationComponent} from "./components/sample-action-configuration/sample-action-configuration.component";
+import {ParentChildPluginConfigurationComponent} from "./components/parent-child-plugin-configuration/parent-child-plugin-configuration.component";
+import {PARENT_CHILD_PLUGIN_LOGO_BASE64} from "./assets";
+import {ParentChildActionConfigurationComponent} from "./components/parent-child-action-configuration/parent-child-action-configuration.component";
 
-const samplePluginSpecification: PluginSpecification = {
-  pluginId: "sample-plugin",
-  pluginConfigurationComponent: SamplePluginConfigurationComponent,
-  pluginLogoBase64: SAMPLE_PLUGIN_LOGO_BASE64,
+const parentChildPluginSpecification: PluginSpecification = {
+  pluginId: "parent-child-plugin",
+  pluginConfigurationComponent: ParentChildPluginConfigurationComponent,
+  pluginLogoBase64: PARENT_CHILD_PLUGIN_LOGO_BASE64,
   functionConfigurationComponents: {
-    "time-api-sample-action": SampleActionConfigurationComponent,
+    "time-api-action": ParentChildActionConfigurationComponent,
   },
   pluginTranslations: {
     nl: {
-      title: "Sample Plugin",
-      "time-api-sample-action": "Time API test actie",
+      title: "Parent Child Plugin",
+      "time-api-action": "Time API test actie",
       description: "Dit is een voorbeeld plugin die beschikt over een API call action.",
       configurationTitle: "Configuratienaam",
       apiUrl: "API URL",
@@ -37,9 +37,9 @@ const samplePluginSpecification: PluginSpecification = {
       message: "Bericht",
     },
     en: {
-      title: "Sample Plugin",
-      "time-api-sample-action": "Time API test action",
-      description: "This is a sample plugin demonstrating an API call action.",
+      title: "Parent Child Plugin",
+      "time-api-action": "Time API test action",
+      description: "This is a parent-child plugin demonstrating an API call action.",
       configurationTitle: "Configuration Name",
       apiUrl: "API URL",
       actionDescription: "This action calls the configured Time API and stores the result as a process variable.",
@@ -48,4 +48,4 @@ const samplePluginSpecification: PluginSpecification = {
   },
 };
 
-export {samplePluginSpecification};
+export {parentChildPluginSpecification};

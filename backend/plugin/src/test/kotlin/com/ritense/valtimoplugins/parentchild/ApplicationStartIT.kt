@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-import {PluginConfigurationData} from "@valtimo/plugin";
+package com.ritense.valtimoplugins.parentchild
 
-interface SamplePluginConfig extends PluginConfigurationData {
-  apiUrl: string;
+import org.junit.jupiter.api.Test
+
+internal class ApplicationStartIT : BaseIntegrationTest() {
+    @Test
+    fun `should start application`() {
+    }
 }
-
-interface SampleActionConfig {
-  message: string;
-}
-
-export {SamplePluginConfig, SampleActionConfig};

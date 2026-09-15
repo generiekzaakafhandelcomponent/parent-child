@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.sampleplugin.client
+package com.ritense.valtimoplugins.parentchild.client
 
 import com.ritense.valtimo.contract.annotation.SkipComponentScan
 import org.springframework.stereotype.Component
@@ -22,7 +22,7 @@ import org.springframework.web.client.RestClient
 
 @SkipComponentScan
 @Component
-class SampleClient(
+class ParentChildClient(
     private val restClient: RestClient = RestClient.create(),
 ) {
     fun fetchTimeAPI(apiUrl: String): ApiResponse =

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.sampleplugin
+import {PluginConfigurationData} from "@valtimo/plugin";
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
-
-@SpringBootApplication
-class TestApplication
-
-fun main(args: Array<String>) {
-    runApplication<TestApplication>(*args)
+interface ParentChildPluginConfig extends PluginConfigurationData {
+  apiUrl: string;
 }
+
+interface ParentChildActionConfig {
+  message: string;
+}
+
+export {ParentChildPluginConfig, ParentChildActionConfig};
