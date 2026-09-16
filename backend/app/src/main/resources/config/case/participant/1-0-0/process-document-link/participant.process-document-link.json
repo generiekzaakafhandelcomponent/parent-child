@@ -1,0 +1,7 @@
+[
+    {
+        "processDefinitionKey": "participant-process",
+        "canInitializeDocument": true,
+        "startableByUser": true
+    }
+]

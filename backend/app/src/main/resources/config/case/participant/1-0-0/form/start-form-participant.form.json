@@ -1,0 +1,65 @@
+{
+    "display": "form",
+    "components": [
+        {
+            "key": "html",
+            "type": "htmlelement",
+            "input": false,
+            "label": "Instructions",
+            "content": "Start a new participant case with the participant's personal details. The holiday, dates and activities are added in the following tasks.",
+            "tableView": false,
+            "refreshOnChange": false
+        },
+        {
+            "key": "name",
+            "type": "textfield",
+            "input": true,
+            "label": "Name",
+            "tableView": true,
+            "applyMaskOn": "change",
+            "validate": {
+                "required": true
+            }
+        },
+        {
+            "key": "gender",
+            "type": "select",
+            "input": true,
+            "label": "Gender",
+            "widget": "choicesjs",
+            "tableView": true,
+            "data": {
+                "values": [
+                    {"label": "Male", "value": "male"},
+                    {"label": "Female", "value": "female"}
+                ]
+            }
+        },
+        {
+            "key": "age",
+            "type": "number",
+            "input": true,
+            "label": "Age",
+            "tableView": true,
+            "validate": {
+                "min": 0
+            }
+        },
+        {
+            "key": "vegetarian",
+            "type": "checkbox",
+            "input": true,
+            "label": "Vegetarian",
+            "tableView": true,
+            "defaultValue": false
+        },
+        {
+            "key": "submit",
+            "type": "button",
+            "input": true,
+            "label": "Start",
+            "tableView": false,
+            "disableOnInvalid": true
+        }
+    ]
+}

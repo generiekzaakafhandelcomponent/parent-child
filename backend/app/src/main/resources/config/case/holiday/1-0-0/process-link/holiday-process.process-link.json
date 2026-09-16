@@ -1,0 +1,26 @@
+[
+    {
+        "activityId": "start-event",
+        "activityType": "bpmn:StartEvent:start",
+        "processLinkType": "form",
+        "formDefinitionName": "start-form-holiday"
+    },
+    {
+        "activityId": "add_hotel",
+        "activityType": "bpmn:UserTask:start",
+        "processLinkType": "form",
+        "formDefinitionName": "holiday-add-hotel"
+    },
+    {
+        "activityId": "add_rooms",
+        "activityType": "bpmn:UserTask:start",
+        "processLinkType": "form",
+        "formDefinitionName": "holiday-add-rooms"
+    },
+    {
+        "activityId": "add_activities",
+        "activityType": "bpmn:UserTask:start",
+        "processLinkType": "form",
+        "formDefinitionName": "holiday-add-activities"
+    }
+]

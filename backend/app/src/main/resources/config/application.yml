@@ -1,6 +1,6 @@
 spring:
   application:
-    name: gzac-plugin-template
+    name: demo-parent-child
   profiles:
     active: dev
   jackson:

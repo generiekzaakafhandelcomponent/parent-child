@@ -1,0 +1,7 @@
+[
+    {
+        "processDefinitionKey": "holiday-process",
+        "canInitializeDocument": true,
+        "startableByUser": true
+    }
+]

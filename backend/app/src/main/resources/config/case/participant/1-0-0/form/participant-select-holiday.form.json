@@ -1,0 +1,33 @@
+{
+    "display": "form",
+    "components": [
+        {
+            "key": "html",
+            "type": "htmlelement",
+            "input": false,
+            "label": "Instructions",
+            "content": "Enter the destination of the holiday this participant wants to join.",
+            "tableView": false,
+            "refreshOnChange": false
+        },
+        {
+            "key": "holidayDestination",
+            "type": "textfield",
+            "input": true,
+            "label": "Holiday destination",
+            "tableView": true,
+            "applyMaskOn": "change",
+            "validate": {
+                "required": true
+            }
+        },
+        {
+            "key": "submit",
+            "type": "button",
+            "input": true,
+            "label": "Save",
+            "tableView": false,
+            "disableOnInvalid": true
+        }
+    ]
+}

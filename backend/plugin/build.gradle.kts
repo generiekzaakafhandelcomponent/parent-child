@@ -15,7 +15,7 @@
  */
 
 dockerCompose {
-    setProjectName("sample-plugin")
+    setProjectName("parent-child-plugin")
     isRequiredBy(project.tasks.test)
 
     tasks.test {

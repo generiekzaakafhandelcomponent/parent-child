@@ -1,4 +1,4 @@
-rootProject.name = "gzac-plugin-template"
+rootProject.name = "parent-child"
 include(
     "backend",
     "backend:app",

@@ -1,0 +1,42 @@
+{
+    "display": "form",
+    "components": [
+        {
+            "key": "html",
+            "type": "htmlelement",
+            "input": false,
+            "label": "Instructions",
+            "content": "Select the activities this participant likes to participate in.",
+            "tableView": false,
+            "refreshOnChange": false
+        },
+        {
+            "key": "activities",
+            "type": "select",
+            "input": true,
+            "label": "Activities",
+            "widget": "choicesjs",
+            "multiple": true,
+            "tableView": true,
+            "data": {
+                "values": [
+                    {"label": "Hiking", "value": "hiking"},
+                    {"label": "Swimming", "value": "swimming"},
+                    {"label": "Sightseeing", "value": "sightseeing"},
+                    {"label": "Skiing", "value": "skiing"},
+                    {"label": "Cycling", "value": "cycling"},
+                    {"label": "Relaxing", "value": "relaxing"},
+                    {"label": "Diving", "value": "diving"}
+                ]
+            }
+        },
+        {
+            "key": "submit",
+            "type": "button",
+            "input": true,
+            "label": "Save",
+            "tableView": false,
+            "disableOnInvalid": true
+        }
+    ]
+}
