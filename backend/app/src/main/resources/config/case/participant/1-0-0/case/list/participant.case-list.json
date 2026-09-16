@@ -1,0 +1,53 @@
+[
+    {
+        "key": "createdOn",
+        "path": "case:createdOn",
+        "displayType": {
+            "type": "date",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "defaultSort": "DESC",
+        "order": 0
+    },
+    {
+        "key": "name",
+        "path": "doc:/name",
+        "displayType": {
+            "type": "text",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "order": 1
+    },
+    {
+        "key": "gender",
+        "path": "doc:/gender",
+        "displayType": {
+            "type": "text",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "order": 2
+    },
+    {
+        "key": "age",
+        "path": "doc:/age",
+        "displayType": {
+            "type": "text",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "order": 3
+    },
+    {
+        "key": "vegetarian",
+        "path": "doc:/vegetarian",
+        "displayType": {
+            "type": "boolean",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "order": 4
+    }
+]

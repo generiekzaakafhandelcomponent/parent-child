@@ -1,0 +1,85 @@
+[
+    {
+        "key": "summary",
+        "widgets": [
+            {
+                "type": "fields",
+                "key": "holiday-fields",
+                "title": "Holiday",
+                "width": 2,
+                "highContrast": true,
+                "properties": {
+                    "columns": [
+                        [
+                            {
+                                "key": "destination",
+                                "title": "Destination",
+                                "value": "doc:/destination",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "startDate",
+                                "title": "Start date",
+                                "value": "doc:/startDate",
+                                "displayProperties": {
+                                    "type": "date",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "endDate",
+                                "title": "End date",
+                                "value": "doc:/endDate",
+                                "displayProperties": {
+                                    "type": "date",
+                                    "hideWhenEmpty": false
+                                }
+                            }
+                        ],
+                        [
+                            {
+                                "key": "description",
+                                "title": "Description",
+                                "value": "doc:/description",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "activities",
+                                "title": "Activities",
+                                "value": "doc:/activities",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "hotel",
+                                "title": "Hotel",
+                                "value": "doc:/hotel",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "rooms",
+                                "title": "Number of rooms",
+                                "value": "doc:/rooms",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            }
+                        ]
+                    ]
+                }
+            }
+        ]
+    }
+]

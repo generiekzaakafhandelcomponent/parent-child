@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.35.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="holiday-participant" name="Holiday Process" processRef="holiday-process" />
+  </bpmn:collaboration>
+  <bpmn:process id="holiday-process" name="Holiday Process" isExecutable="true">
+    <bpmn:startEvent id="start-event" name="Process started">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="start-event" targetRef="Gateway_0khy3l1" />
+    <bpmn:userTask id="add_rooms" name="Add rooms">
+      <bpmn:incoming>Flow_0gxtyan</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b9ll74</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1g0j4gm" sourceRef="Gateway_0khy3l1" targetRef="add_activities" />
+    <bpmn:endEvent id="end-event" name="Process ended">
+      <bpmn:incoming>Flow_043oqm3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:parallelGateway id="Gateway_097rozg">
+      <bpmn:incoming>Flow_0oa4pqw</bpmn:incoming>
+      <bpmn:incoming>Flow_1b9ll74</bpmn:incoming>
+      <bpmn:outgoing>Flow_043oqm3</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_0oa4pqw" sourceRef="add_activities" targetRef="Gateway_097rozg" />
+    <bpmn:sequenceFlow id="Flow_1b9ll74" sourceRef="add_rooms" targetRef="Gateway_097rozg" />
+    <bpmn:sequenceFlow id="Flow_043oqm3" sourceRef="Gateway_097rozg" targetRef="end-event" />
+    <bpmn:userTask id="add_activities" name="Add activities">
+      <bpmn:incoming>Flow_1g0j4gm</bpmn:incoming>
+      <bpmn:outgoing>Flow_0oa4pqw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0px6xzg" sourceRef="Gateway_0khy3l1" targetRef="add_hotel" />
+    <bpmn:sequenceFlow id="Flow_0gxtyan" sourceRef="add_hotel" targetRef="add_rooms" />
+    <bpmn:userTask id="add_hotel" name="Add hotel">
+      <bpmn:incoming>Flow_0px6xzg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gxtyan</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:parallelGateway id="Gateway_0khy3l1">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1g0j4gm</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0px6xzg</bpmn:outgoing>
+    </bpmn:parallelGateway>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_1_di" bpmnElement="holiday-participant" isHorizontal="true">
+        <dc:Bounds x="160" y="100" width="830" height="340" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="start-event">
+        <dc:Bounds x="232" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="214" y="225" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mebzix_di" bpmnElement="add_rooms">
+        <dc:Bounds x="650" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="end-event">
+        <dc:Bounds x="902" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="884" y="235" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1rzlz7p_di" bpmnElement="Gateway_097rozg">
+        <dc:Bounds x="795" y="185" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1nkdcoh_di" bpmnElement="add_activities">
+        <dc:Bounds x="650" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ci0up9_di" bpmnElement="add_hotel">
+        <dc:Bounds x="480" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1b2lzih_di" bpmnElement="Gateway_0khy3l1">
+        <dc:Bounds x="365" y="175" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="268" y="200" />
+        <di:waypoint x="365" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1g0j4gm_di" bpmnElement="Flow_1g0j4gm">
+        <di:waypoint x="390" y="175" />
+        <di:waypoint x="390" y="150" />
+        <di:waypoint x="650" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oa4pqw_di" bpmnElement="Flow_0oa4pqw">
+        <di:waypoint x="750" y="150" />
+        <di:waypoint x="820" y="150" />
+        <di:waypoint x="820" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b9ll74_di" bpmnElement="Flow_1b9ll74">
+        <di:waypoint x="750" y="330" />
+        <di:waypoint x="820" y="330" />
+        <di:waypoint x="820" y="235" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_043oqm3_di" bpmnElement="Flow_043oqm3">
+        <di:waypoint x="845" y="210" />
+        <di:waypoint x="902" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0px6xzg_di" bpmnElement="Flow_0px6xzg">
+        <di:waypoint x="390" y="225" />
+        <di:waypoint x="390" y="330" />
+        <di:waypoint x="480" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gxtyan_di" bpmnElement="Flow_0gxtyan">
+        <di:waypoint x="580" y="330" />
+        <di:waypoint x="650" y="330" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

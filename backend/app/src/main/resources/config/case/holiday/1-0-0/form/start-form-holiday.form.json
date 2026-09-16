@@ -1,0 +1,109 @@
+{
+    "display": "form",
+    "components": [
+        {
+            "key": "html",
+            "type": "htmlelement",
+            "input": false,
+            "label": "Instructions",
+            "content": "Start a new holiday case, specifying the destination and dates. Hotel, rooms and activities are added in the following tasks.",
+            "tableView": false,
+            "refreshOnChange": false
+        },
+        {
+            "key": "destination",
+            "type": "textfield",
+            "input": true,
+            "label": "Destination",
+            "tableView": true,
+            "applyMaskOn": "change",
+            "validate": {
+                "required": true
+            }
+        },
+        {
+            "key": "startDate",
+            "type": "datetime",
+            "input": true,
+            "label": "Start date",
+            "format": "dd-MM-yyyy",
+            "widget": {
+                "mode": "single",
+                "type": "calendar",
+                "format": "dd-MM-yyyy",
+                "locale": "en",
+                "maxDate": null,
+                "minDate": null,
+                "time_24hr": false,
+                "allowInput": true,
+                "enableTime": false,
+                "noCalendar": false,
+                "hourIncrement": 1,
+                "disableWeekdays": false,
+                "disableWeekends": false,
+                "minuteIncrement": 1,
+                "displayInTimezone": "viewer",
+                "useLocaleSettings": false
+            },
+            "tableView": false,
+            "datePicker": {
+                "disableWeekdays": false,
+                "disableWeekends": false
+            },
+            "enableTime": false,
+            "placeholder": "dd-mm-yyyy",
+            "enableMaxDateInput": false,
+            "enableMinDateInput": false
+        },
+        {
+            "key": "endDate",
+            "type": "datetime",
+            "input": true,
+            "label": "End date",
+            "format": "dd-MM-yyyy",
+            "widget": {
+                "mode": "single",
+                "type": "calendar",
+                "format": "dd-MM-yyyy",
+                "locale": "en",
+                "maxDate": null,
+                "minDate": null,
+                "time_24hr": false,
+                "allowInput": true,
+                "enableTime": false,
+                "noCalendar": false,
+                "hourIncrement": 1,
+                "disableWeekdays": false,
+                "disableWeekends": false,
+                "minuteIncrement": 1,
+                "displayInTimezone": "viewer",
+                "useLocaleSettings": false
+            },
+            "tableView": false,
+            "datePicker": {
+                "disableWeekdays": false,
+                "disableWeekends": false
+            },
+            "enableTime": false,
+            "placeholder": "dd-mm-yyyy",
+            "enableMaxDateInput": false,
+            "enableMinDateInput": false
+        },
+        {
+            "key": "description",
+            "type": "textarea",
+            "input": true,
+            "label": "Description",
+            "tableView": true,
+            "applyMaskOn": "change"
+        },
+        {
+            "key": "submit",
+            "type": "button",
+            "input": true,
+            "label": "Start",
+            "tableView": false,
+            "disableOnInvalid": true
+        }
+    ]
+}

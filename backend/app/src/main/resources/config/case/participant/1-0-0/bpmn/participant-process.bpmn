@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.35.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="participant-participant" name="Participant Process" processRef="participant-process" />
+  </bpmn:collaboration>
+  <bpmn:process id="participant-process" name="Participant Process" isExecutable="true">
+    <bpmn:startEvent id="start-event" name="Process started">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="start-event" targetRef="select_holiday" />
+    <bpmn:sequenceFlow id="Flow_19p6equ" sourceRef="select_holiday" targetRef="couple_holiday" />
+    <bpmn:userTask id="select_holiday" name="Select Holiday">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_19p6equ</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1lyl1r8" sourceRef="couple_holiday" targetRef="select_dates" />
+    <bpmn:sequenceFlow id="Flow_0lnkx4s" sourceRef="select_dates" targetRef="select_activities" />
+    <bpmn:sequenceFlow id="Flow_0mdho07" sourceRef="select_activities" targetRef="end-event" />
+    <bpmn:serviceTask id="couple_holiday" name="Couple Holiday" camunda:expression="${true}">
+      <bpmn:incoming>Flow_19p6equ</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lyl1r8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="select_dates" name="Select dates">
+      <bpmn:incoming>Flow_1lyl1r8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lnkx4s</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="end-event" name="Process ended">
+      <bpmn:incoming>Flow_0mdho07</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="select_activities" name="Select activities">
+      <bpmn:incoming>Flow_0lnkx4s</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mdho07</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_1_di" bpmnElement="participant-participant" isHorizontal="true">
+        <dc:Bounds x="160" y="100" width="840" height="210" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="start-event">
+        <dc:Bounds x="232" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="214" y="225" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0u3ixjb_di" bpmnElement="select_holiday">
+        <dc:Bounds x="310" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0daghij_di" bpmnElement="couple_holiday">
+        <dc:Bounds x="460" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mcegd5_di" bpmnElement="select_dates">
+        <dc:Bounds x="590" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="end-event">
+        <dc:Bounds x="902" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="884" y="225" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vhtybl_di" bpmnElement="select_activities">
+        <dc:Bounds x="730" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="268" y="200" />
+        <di:waypoint x="310" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19p6equ_di" bpmnElement="Flow_19p6equ">
+        <di:waypoint x="410" y="200" />
+        <di:waypoint x="460" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lyl1r8_di" bpmnElement="Flow_1lyl1r8">
+        <di:waypoint x="560" y="200" />
+        <di:waypoint x="590" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lnkx4s_di" bpmnElement="Flow_0lnkx4s">
+        <di:waypoint x="690" y="200" />
+        <di:waypoint x="730" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mdho07_di" bpmnElement="Flow_0mdho07">
+        <di:waypoint x="830" y="200" />
+        <di:waypoint x="902" y="200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

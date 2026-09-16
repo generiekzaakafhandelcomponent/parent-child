@@ -1,0 +1,41 @@
+{
+    "$id": "holiday.schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Holiday",
+    "type": "object",
+    "properties": {
+        "destination": {
+            "type": "string",
+            "description": "Destination"
+        },
+        "startDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Start date"
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date",
+            "description": "End date"
+        },
+        "description": {
+            "type": "string",
+            "description": "Description"
+        },
+        "activities": {
+            "type": "array",
+            "description": "Activities available during this holiday",
+            "items": {
+                "type": "string"
+            }
+        },
+        "hotel": {
+            "type": "string",
+            "description": "Hotel"
+        },
+        "rooms": {
+            "type": "integer",
+            "description": "Number of rooms"
+        }
+    }
+}

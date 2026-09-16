@@ -1,0 +1,43 @@
+[
+    {
+        "key": "createdOn",
+        "path": "case:createdOn",
+        "displayType": {
+            "type": "date",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "defaultSort": "DESC",
+        "order": 0
+    },
+    {
+        "key": "destination",
+        "path": "doc:/destination",
+        "displayType": {
+            "type": "text",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "order": 1
+    },
+    {
+        "key": "startDate",
+        "path": "doc:/startDate",
+        "displayType": {
+            "type": "date",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "order": 2
+    },
+    {
+        "key": "endDate",
+        "path": "doc:/endDate",
+        "displayType": {
+            "type": "date",
+            "displayTypeParameters": {}
+        },
+        "sortable": true,
+        "order": 3
+    }
+]

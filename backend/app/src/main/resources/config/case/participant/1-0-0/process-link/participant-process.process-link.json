@@ -1,0 +1,26 @@
+[
+    {
+        "activityId": "start-event",
+        "activityType": "bpmn:StartEvent:start",
+        "processLinkType": "form",
+        "formDefinitionName": "start-form-participant"
+    },
+    {
+        "activityId": "select_holiday",
+        "activityType": "bpmn:UserTask:start",
+        "processLinkType": "form",
+        "formDefinitionName": "participant-select-holiday"
+    },
+    {
+        "activityId": "select_dates",
+        "activityType": "bpmn:UserTask:start",
+        "processLinkType": "form",
+        "formDefinitionName": "participant-select-dates"
+    },
+    {
+        "activityId": "select_activities",
+        "activityType": "bpmn:UserTask:start",
+        "processLinkType": "form",
+        "formDefinitionName": "participant-select-activities"
+    }
+]

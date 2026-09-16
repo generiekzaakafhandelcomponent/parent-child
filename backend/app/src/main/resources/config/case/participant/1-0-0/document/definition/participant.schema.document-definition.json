@@ -1,0 +1,46 @@
+{
+    "$id": "participant.schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Participant",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Name"
+        },
+        "gender": {
+            "type": "string",
+            "description": "Gender",
+            "enum": ["male", "female"]
+        },
+        "age": {
+            "type": "integer",
+            "description": "Age"
+        },
+        "vegetarian": {
+            "type": "boolean",
+            "description": "Vegetarian"
+        },
+        "activities": {
+            "type": "array",
+            "description": "Activities this participant likes to participate in",
+            "items": {
+                "type": "string"
+            }
+        },
+        "holidayDestination": {
+            "type": "string",
+            "description": "Destination of the holiday to join"
+        },
+        "startDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Start date"
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date",
+            "description": "End date"
+        }
+    }
+}

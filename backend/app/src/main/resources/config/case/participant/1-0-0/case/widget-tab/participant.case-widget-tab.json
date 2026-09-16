@@ -1,0 +1,94 @@
+[
+    {
+        "key": "summary",
+        "widgets": [
+            {
+                "type": "fields",
+                "key": "participant-fields",
+                "title": "Participant",
+                "width": 2,
+                "highContrast": true,
+                "properties": {
+                    "columns": [
+                        [
+                            {
+                                "key": "name",
+                                "title": "Name",
+                                "value": "doc:/name",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "gender",
+                                "title": "Gender",
+                                "value": "doc:/gender",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "age",
+                                "title": "Age",
+                                "value": "doc:/age",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            }
+                        ],
+                        [
+                            {
+                                "key": "vegetarian",
+                                "title": "Vegetarian",
+                                "value": "doc:/vegetarian",
+                                "displayProperties": {
+                                    "type": "boolean",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "activities",
+                                "title": "Activities",
+                                "value": "doc:/activities",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "holidayDestination",
+                                "title": "Holiday destination",
+                                "value": "doc:/holidayDestination",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "startDate",
+                                "title": "Start date",
+                                "value": "doc:/startDate",
+                                "displayProperties": {
+                                    "type": "date",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
+                                "key": "endDate",
+                                "title": "End date",
+                                "value": "doc:/endDate",
+                                "displayProperties": {
+                                    "type": "date",
+                                    "hideWhenEmpty": false
+                                }
+                            }
+                        ]
+                    ]
+                }
+            }
+        ]
+    }
+]

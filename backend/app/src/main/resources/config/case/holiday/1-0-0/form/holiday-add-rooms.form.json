@@ -1,0 +1,33 @@
+{
+    "display": "form",
+    "components": [
+        {
+            "key": "html",
+            "type": "htmlelement",
+            "input": false,
+            "label": "Instructions",
+            "content": "Add the number of rooms booked for this holiday.",
+            "tableView": false,
+            "refreshOnChange": false
+        },
+        {
+            "key": "rooms",
+            "type": "number",
+            "input": true,
+            "label": "Number of rooms",
+            "tableView": true,
+            "validate": {
+                "required": true,
+                "min": 1
+            }
+        },
+        {
+            "key": "submit",
+            "type": "button",
+            "input": true,
+            "label": "Save",
+            "tableView": false,
+            "disableOnInvalid": true
+        }
+    ]
+}
