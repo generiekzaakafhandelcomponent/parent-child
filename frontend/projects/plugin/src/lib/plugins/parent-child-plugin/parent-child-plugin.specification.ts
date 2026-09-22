@@ -32,7 +32,7 @@ const parentChildPluginSpecification: PluginSpecification = {
       "connect-parent": "Koppel bovenliggend document",
       description: "Dit is een voorbeeld plugin die beschikt over een API call action.",
       configurationTitle: "Configuratienaam",
-      actionDescription: "Deze actie koppelt het huidige document aan een bovenliggend document door een PARENT relatie toe te voegen.",
+      actionDescription: "Deze actie koppelt het huidige document aan een bovenliggend document: het huidige document krijgt een PARENT relatie en het bovenliggend document krijgt een CHILD relatie.",
       parentDocumentId: "Document ID van bovenliggend document",
     },
     en: {
@@ -40,7 +40,7 @@ const parentChildPluginSpecification: PluginSpecification = {
       "connect-parent": "Connect parent document",
       description: "This is a parent-child plugin demonstrating an API call action.",
       configurationTitle: "Configuration Name",
-      actionDescription: "This action links the current document to a parent document by adding a PARENT relation.",
+      actionDescription: "This action links the current document to a parent document: the current document gets a PARENT relation and the parent document gets a CHILD relation.",
       parentDocumentId: "Parent document ID",
     },
   },

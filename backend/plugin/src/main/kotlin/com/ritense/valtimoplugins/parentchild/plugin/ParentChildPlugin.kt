@@ -40,13 +40,15 @@ open class ParentChildPlugin(
     private val parentChildService: ParentChildService,
 ) {
     /**
-     * Links the document the process is running for to a parent document, by assigning a PARENT
-     * DocumentRelation to it.
+     * Links the document the process is running for to a parent document, both ways: a PARENT
+     * DocumentRelation is assigned to the current document, and the reciprocal CHILD DocumentRelation is
+     * assigned to the parent document.
      */
     @PluginAction(
         key = "connect-parent",
         title = "connect parent",
-        description = "Links the current document to a parent document by adding a PARENT relation.",
+        description = "Links the current document to a parent document by adding a PARENT relation to the " +
+            "current document and a CHILD relation to the parent document.",
         activityTypes = [SERVICE_TASK_START],
     )
     open fun connectParentDocument(
