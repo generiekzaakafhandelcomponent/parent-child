@@ -31,7 +31,7 @@ class ParentChildService(
     /**
      * Links [childDocumentId] to [parentDocumentId] by assigning a PARENT relation to the child document.
      */
-    fun assignParentDocument(childDocumentId: String, parentDocumentId: String) {
+    fun connectParentDocument(childDocumentId: String, parentDocumentId: String) {
         val parentRelation = JsonSchemaDocumentRelation(
             JsonSchemaDocumentId.existingId(parentDocumentId),
             DocumentRelationType.PARENT,

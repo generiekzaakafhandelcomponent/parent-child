@@ -19,7 +19,6 @@ package com.ritense.valtimoplugins.parentchild.plugin
 import com.ritense.plugin.annotation.Plugin
 import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
-import com.ritense.plugin.annotation.PluginProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName.SERVICE_TASK_START
 import com.ritense.valtimoplugins.parentchild.client.ParentChildService
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -40,9 +39,6 @@ private val logger = KotlinLogging.logger {}
 open class ParentChildPlugin(
     private val parentChildService: ParentChildService,
 ) {
-    @PluginProperty(key = "apiUrl", secret = false)
-    lateinit var apiUrl: String
-
     /**
      * Links the document the process is running for to a parent document, by assigning a PARENT
      * DocumentRelation to it.
@@ -53,11 +49,11 @@ open class ParentChildPlugin(
         description = "Links the current document to a parent document by adding a PARENT relation.",
         activityTypes = [SERVICE_TASK_START],
     )
-    open fun assignParentDocument(
+    open fun connectParentDocument(
         execution: DelegateExecution,
         @PluginActionProperty parentDocumentId: String,
     ) {
-        parentChildService.assignParentDocument(
+        parentChildService.connectParentDocument(
             childDocumentId = execution.processBusinessKey,
             parentDocumentId = parentDocumentId,
         )

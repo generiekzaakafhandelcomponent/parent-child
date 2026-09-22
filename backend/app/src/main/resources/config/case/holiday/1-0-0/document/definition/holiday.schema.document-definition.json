@@ -10,12 +10,10 @@
         },
         "startDate": {
             "type": "string",
-            "format": "date",
             "description": "Start date"
         },
         "endDate": {
             "type": "string",
-            "format": "date",
             "description": "End date"
         },
         "description": {

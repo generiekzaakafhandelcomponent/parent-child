@@ -19,6 +19,9 @@
             "applyMaskOn": "change",
             "validate": {
                 "required": true
+            },
+            "properties": {
+              "targetKey": "pv:parentDocId"
             }
         },
         {

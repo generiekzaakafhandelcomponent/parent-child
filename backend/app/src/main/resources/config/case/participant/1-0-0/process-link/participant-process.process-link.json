@@ -7,20 +7,30 @@
     },
     {
         "activityId": "select_holiday",
-        "activityType": "bpmn:UserTask:start",
+        "activityType": "bpmn:UserTask:create",
         "processLinkType": "form",
         "formDefinitionName": "participant-select-holiday"
     },
     {
         "activityId": "select_dates",
-        "activityType": "bpmn:UserTask:start",
+        "activityType": "bpmn:UserTask:create",
         "processLinkType": "form",
         "formDefinitionName": "participant-select-dates"
     },
     {
         "activityId": "select_activities",
-        "activityType": "bpmn:UserTask:start",
+        "activityType": "bpmn:UserTask:create",
         "processLinkType": "form",
         "formDefinitionName": "participant-select-activities"
+    },
+    {
+      "activityId": "couple_holiday",
+      "activityType": "bpmn:ServiceTask:start",
+      "processLinkType" : "plugin",
+      "pluginConfigurationId" : "47f61ed4-d2b9-4a6a-854e-44e2151cb32a",
+      "pluginActionDefinitionKey" : "connect-parent",
+      "actionProperties" : {
+        "parentDocumentId": "pv:parentDocId"
+      }
     }
 ]

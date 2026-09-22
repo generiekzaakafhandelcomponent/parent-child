@@ -36,7 +36,7 @@ class ParentChildServiceTest {
         val childDocumentId = "f3c1a1a0-1111-4a1a-8a1a-000000000001"
         val parentDocumentId = "f3c1a1a0-2222-4a1a-8a1a-000000000002"
 
-        parentChildService.assignParentDocument(childDocumentId, parentDocumentId)
+        parentChildService.connectParentDocument(childDocumentId, parentDocumentId)
 
         val documentIdCaptor = argumentCaptor<com.ritense.document.domain.Document.Id>()
         val relationCaptor = argumentCaptor<JsonSchemaDocumentRelation>()
