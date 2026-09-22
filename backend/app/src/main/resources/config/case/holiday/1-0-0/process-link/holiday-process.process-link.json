@@ -7,19 +7,19 @@
     },
     {
         "activityId": "add_hotel",
-        "activityType": "bpmn:UserTask:start",
+        "activityType": "bpmn:UserTask:create",
         "processLinkType": "form",
         "formDefinitionName": "holiday-add-hotel"
     },
     {
         "activityId": "add_rooms",
-        "activityType": "bpmn:UserTask:start",
+        "activityType": "bpmn:UserTask:create",
         "processLinkType": "form",
         "formDefinitionName": "holiday-add-rooms"
     },
     {
         "activityId": "add_activities",
-        "activityType": "bpmn:UserTask:start",
+        "activityType": "bpmn:UserTask:create",
         "processLinkType": "form",
         "formDefinitionName": "holiday-add-activities"
     }

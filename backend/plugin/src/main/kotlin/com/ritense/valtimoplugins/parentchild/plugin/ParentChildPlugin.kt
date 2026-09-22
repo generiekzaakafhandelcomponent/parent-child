@@ -19,7 +19,6 @@ package com.ritense.valtimoplugins.parentchild.plugin
 import com.ritense.plugin.annotation.Plugin
 import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
-import com.ritense.plugin.annotation.PluginProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName.SERVICE_TASK_START
 import com.ritense.valtimoplugins.parentchild.client.ParentChildService
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -40,32 +39,25 @@ private val logger = KotlinLogging.logger {}
 open class ParentChildPlugin(
     private val parentChildService: ParentChildService,
 ) {
-    @PluginProperty(key = "apiUrl", secret = false)
-    lateinit var apiUrl: String
-
     /**
-     * Example action
-     * Sends a GET request to an API endpoint and returns the response.
+     * Links the document the process is running for to a parent document, both ways: a PARENT
+     * DocumentRelation is assigned to the current document, and the reciprocal CHILD DocumentRelation is
+     * assigned to the parent document.
      */
     @PluginAction(
-        key = "time-api-action",
-        title = "Time API test action",
-        description = "Time API plugin action",
+        key = "connect-parent",
+        title = "connect parent",
+        description = "Links the current document to a parent document by adding a PARENT relation to the " +
+            "current document and a CHILD relation to the parent document.",
         activityTypes = [SERVICE_TASK_START],
     )
-    open fun getCurrentTime(
+    open fun connectParentDocument(
         execution: DelegateExecution,
-        @PluginActionProperty message: String,
-    ): String {
-        try {
-            val result = parentChildService.printAPIResults(apiUrl = apiUrl)
-            logger.info { "Message: $message, Result: $result" }
-            execution.setVariable("message", message)
-            execution.setVariable("apiResult", result)
-            return result
-        } catch (e: Exception) {
-            logger.error(e) { "Error: ${e.cause}" }
-            return "Error: ${e.message}"
-        }
+        @PluginActionProperty parentDocumentId: String,
+    ) {
+        parentChildService.connectParentDocument(
+            childDocumentId = execution.processBusinessKey,
+            parentDocumentId = parentDocumentId,
+        )
     }
 }

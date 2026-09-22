@@ -24,10 +24,10 @@
   } as obs"
 >
   <v-input
-    name="message"
-    [title]="'message' | pluginTranslate: pluginId | async"
+    name="parentDocumentId"
+    [title]="'parentDocumentId' | pluginTranslate: pluginId | async"
     [margin]="true"
-    [defaultValue]="obs.prefill?.message"
+    [defaultValue]="obs.prefill?.parentDocumentId"
     [disabled]="obs.disabled"
     [required]="true"
     [widthPx]="350"

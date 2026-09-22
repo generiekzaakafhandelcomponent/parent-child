@@ -24,26 +24,24 @@ const parentChildPluginSpecification: PluginSpecification = {
   pluginConfigurationComponent: ParentChildPluginConfigurationComponent,
   pluginLogoBase64: PARENT_CHILD_PLUGIN_LOGO_BASE64,
   functionConfigurationComponents: {
-    "time-api-action": ParentChildActionConfigurationComponent,
+    "connect-parent": ParentChildActionConfigurationComponent,
   },
   pluginTranslations: {
     nl: {
       title: "Parent Child Plugin",
-      "time-api-action": "Time API test actie",
+      "connect-parent": "Koppel bovenliggend document",
       description: "Dit is een voorbeeld plugin die beschikt over een API call action.",
       configurationTitle: "Configuratienaam",
-      apiUrl: "API URL",
-      actionDescription: "Deze actie roept de geconfigureerde Time API aan en slaat het resultaat op als procesvariabele.",
-      message: "Bericht",
+      actionDescription: "Deze actie koppelt het huidige document aan een bovenliggend document: het huidige document krijgt een PARENT relatie en het bovenliggend document krijgt een CHILD relatie.",
+      parentDocumentId: "Document ID van bovenliggend document",
     },
     en: {
       title: "Parent Child Plugin",
-      "time-api-action": "Time API test action",
+      "connect-parent": "Connect parent document",
       description: "This is a parent-child plugin demonstrating an API call action.",
       configurationTitle: "Configuration Name",
-      apiUrl: "API URL",
-      actionDescription: "This action calls the configured Time API and stores the result as a process variable.",
-      message: "Message",
+      actionDescription: "This action links the current document to a parent document: the current document gets a PARENT relation and the parent document gets a CHILD relation.",
+      parentDocumentId: "Parent document ID",
     },
   },
 };

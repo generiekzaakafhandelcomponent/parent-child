@@ -17,11 +17,10 @@
 import {PluginConfigurationData} from "@valtimo/plugin";
 
 interface ParentChildPluginConfig extends PluginConfigurationData {
-  apiUrl: string;
 }
 
 interface ParentChildActionConfig {
-  message: string;
+  parentDocumentId: string;
 }
 
 export {ParentChildPluginConfig, ParentChildActionConfig};
