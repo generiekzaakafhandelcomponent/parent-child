@@ -44,28 +44,22 @@ open class ParentChildPlugin(
     lateinit var apiUrl: String
 
     /**
-     * Example action
-     * Sends a GET request to an API endpoint and returns the response.
+     * Links the document the process is running for to a parent document, by assigning a PARENT
+     * DocumentRelation to it.
      */
     @PluginAction(
-        key = "time-api-action",
-        title = "Time API test action",
-        description = "Time API plugin action",
+        key = "connect-parent",
+        title = "connect parent",
+        description = "Links the current document to a parent document by adding a PARENT relation.",
         activityTypes = [SERVICE_TASK_START],
     )
-    open fun getCurrentTime(
+    open fun assignParentDocument(
         execution: DelegateExecution,
-        @PluginActionProperty message: String,
-    ): String {
-        try {
-            val result = parentChildService.printAPIResults(apiUrl = apiUrl)
-            logger.info { "Message: $message, Result: $result" }
-            execution.setVariable("message", message)
-            execution.setVariable("apiResult", result)
-            return result
-        } catch (e: Exception) {
-            logger.error(e) { "Error: ${e.cause}" }
-            return "Error: ${e.message}"
-        }
+        @PluginActionProperty parentDocumentId: String,
+    ) {
+        parentChildService.assignParentDocument(
+            childDocumentId = execution.processBusinessKey,
+            parentDocumentId = parentDocumentId,
+        )
     }
 }

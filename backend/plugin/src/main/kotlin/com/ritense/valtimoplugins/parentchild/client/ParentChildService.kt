@@ -16,23 +16,26 @@
 
 package com.ritense.valtimoplugins.parentchild.client
 
+import com.ritense.document.domain.impl.JsonSchemaDocumentId
+import com.ritense.document.domain.impl.relation.JsonSchemaDocumentRelation
+import com.ritense.document.domain.relation.DocumentRelationType
+import com.ritense.document.service.DocumentService
 import com.ritense.valtimo.contract.annotation.SkipComponentScan
 import org.springframework.stereotype.Service
 
 @SkipComponentScan
 @Service
 class ParentChildService(
-    private val parentChildClient: ParentChildClient,
+    private val documentService: DocumentService,
 ) {
-    fun printAPIResults(apiUrl: String): String {
-        val apiResponse = parentChildClient.fetchTimeAPI(apiUrl)
-
-        if (apiResponse.error != null) {
-            return "Failed: ${apiResponse.error}"
-        }
-
-        val tz = apiResponse.result?.body
-        return "Timezone: ${tz?.timeZone}, DateTime: ${tz?.dateTime}, " +
-            "DayOfWeek: ${tz?.dayOfWeek}, HTTP Status: ${apiResponse.responseStatus}"
+    /**
+     * Links [childDocumentId] to [parentDocumentId] by assigning a PARENT relation to the child document.
+     */
+    fun assignParentDocument(childDocumentId: String, parentDocumentId: String) {
+        val parentRelation = JsonSchemaDocumentRelation(
+            JsonSchemaDocumentId.existingId(parentDocumentId),
+            DocumentRelationType.PARENT,
+        )
+        documentService.assignDocumentRelation(JsonSchemaDocumentId.existingId(childDocumentId), parentRelation)
     }
 }
