@@ -22,6 +22,7 @@ import com.ritense.document.domain.relation.DocumentRelationType
 import com.ritense.document.service.DocumentService
 import com.ritense.valtimo.contract.annotation.SkipComponentScan
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @SkipComponentScan
 @Service
@@ -32,8 +33,7 @@ class ParentChildService(
      * Links [childDocumentId] and [parentDocumentId] both ways: a PARENT relation is assigned to the child
      * document, and the reciprocal CHILD relation is assigned to the parent document.
      */
-
-    //TODO add transactional
+    @Transactional
     fun connectParentDocument(childDocumentId: String, parentDocumentId: String) {
         val childId = JsonSchemaDocumentId.existingId(childDocumentId)
         val parentId = JsonSchemaDocumentId.existingId(parentDocumentId)
