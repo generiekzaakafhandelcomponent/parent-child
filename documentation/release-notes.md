@@ -1,7 +1,7 @@
 # Release notes
 
-Overzicht van wijzigingen per versie van de GZAC plugin-template.
+Overzicht van wijzigingen per versie van de Parent-child plugin.
 
-## 0.0.1
+## 1.0.-
 
-Eerste opzet
+Leg relatie tussen parent en child dossier

@@ -4,7 +4,9 @@
 
 ## Overview
 
-This is a parent-child plugin demonstrating an API call action. It fetches data from a time API endpoint.
+This plugin links a document to a parent document. Its `connect-parent` action assigns a PARENT
+document relation to the document the process is running for, and the reciprocal CHILD document
+relation to the specified parent document.
 
 ## Dependencies
 
@@ -50,22 +52,22 @@ import {
 
 ## Configuration
 
-List the plugin configuration properties and how to set them.
-
-| Property | Type   | Required | Description                          |
-|----------|--------|----------|--------------------------------------|
-| apiUrl   | string | Yes      | The URL of the time API to call      |
+This plugin has no configuration properties.
 
 ## Actions
 
-### Time API test action
+### connect parent
 
-Sends a GET request to the configured API URL and returns the timezone response.
+Links the document the process is running for to a parent document: a PARENT relation is assigned
+to the current document, and a CHILD relation is assigned to the parent document.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-|           |      |          |             |
+| Parameter       | Type   | Required | Description                          |
+|-----------------|--------|----------|---------------------------------------|
+| parentDocumentId | string | Yes     | The ID of the document to link as parent |
 
 ## Usage
 
-Explain how to use the plugin in a process, with examples if applicable.
+Add a service task to your process and configure it to use the Parent Child Plugin's "connect
+parent" action, providing the `parentDocumentId` of the document to link. The action runs on
+service task start and links the document identified by the process business key to the given
+parent document.
