@@ -16,8 +16,8 @@
 
 package com.ritense.valtimoplugins.parentchild.autoconfiguration
 
+import com.ritense.document.service.DocumentService
 import com.ritense.plugin.service.PluginService
-import com.ritense.valtimoplugins.parentchild.client.ParentChildClient
 import com.ritense.valtimoplugins.parentchild.client.ParentChildService
 import com.ritense.valtimoplugins.parentchild.plugin.ParentChildPluginFactory
 import org.springframework.boot.autoconfigure.AutoConfiguration
@@ -26,13 +26,12 @@ import org.springframework.context.annotation.Bean
 
 @AutoConfiguration
 class ParentChildAutoConfiguration {
-    @Bean
-    @ConditionalOnMissingBean(ParentChildClient::class)
-    fun parentChildClient(): ParentChildClient = ParentChildClient()
 
     @Bean
     @ConditionalOnMissingBean(ParentChildService::class)
-    fun parentChildService(parentChildClient: ParentChildClient): ParentChildService = ParentChildService(parentChildClient)
+    fun parentChildService(
+        documentService: DocumentService,
+    ): ParentChildService = ParentChildService(documentService)
 
     @Bean
     @ConditionalOnMissingBean(ParentChildPluginFactory::class)

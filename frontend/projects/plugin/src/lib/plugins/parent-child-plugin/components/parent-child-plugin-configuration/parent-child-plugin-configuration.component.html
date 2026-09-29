@@ -32,14 +32,4 @@
     placeholder="Parent Child Plugin"
   >
   </v-input>
-  <v-input
-    name="apiUrl"
-    [title]="'apiUrl' | pluginTranslate: pluginId | async"
-    [margin]="true"
-    [disabled]="obs.disabled"
-    [defaultValue]="obs.prefill?.apiUrl"
-    [required]="true"
-    [widthPx]="350"
-  >
-  </v-input>
 </v-form>

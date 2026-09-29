@@ -50,7 +50,7 @@ export class ParentChildActionConfigurationComponent implements FunctionConfigur
   }
 
   private handleValid(formValue: ParentChildActionConfig): void {
-    const valid = !!formValue.message;
+    const valid = !!formValue.parentDocumentId;
     this.valid$.next(valid);
     this.valid.emit(valid);
   }

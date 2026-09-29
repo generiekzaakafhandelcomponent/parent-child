@@ -50,7 +50,7 @@ export class ParentChildPluginConfigurationComponent implements PluginConfigurat
   }
 
   private handleValid(formValue: ParentChildPluginConfig): void {
-    const valid = !!(formValue.configurationTitle && formValue.apiUrl);
+    const valid = !!formValue.configurationTitle;
     this.valid$.next(valid);
     this.valid.emit(valid);
   }
