@@ -4,7 +4,12 @@
 
 ## Overview
 
-This is a parent-child plugin demonstrating an API call action. It fetches data from a time API endpoint.
+Deze plugin legt een hiërarchische relatie tussen twee documenten binnen een proces vast. Wanneer
+het document waarvoor het proces draait aan een ander (bovenliggend) document moet worden
+gekoppeld, zorgt de plugin ervoor dat beide kanten van deze relatie correct worden geregistreerd:
+het huidige document krijgt een PARENT-relatie naar het opgegeven document, en dat opgegeven
+document krijgt op zijn beurt een reciproque CHILD-relatie terug naar het huidige document. Zo
+blijft de ouder-kindstructuur tussen documenten in beide richtingen consistent en opvraagbaar.
 
 ## Dependencies
 
@@ -12,7 +17,7 @@ This is a parent-child plugin demonstrating an API call action. It fetches data 
 
 ```kotlin
 dependencies {
-    implementation("com.ritense.valtimoplugins:parent-child-plugin:0.0.1")
+    implementation("com.ritense.valtimoplugins:parent-child-plugin:1.0.0")
 }
 ```
 
@@ -21,7 +26,7 @@ dependencies {
 ```json
 {
   "dependencies": {
-    "@valtimo-plugins/parent-child-plugin": "0.0.1"
+    "@valtimo-plugins/parent-child-plugin": "1.0.0"
   }
 }
 ```
@@ -50,22 +55,30 @@ import {
 
 ## Configuration
 
-List the plugin configuration properties and how to set them.
-
-| Property | Type   | Required | Description                          |
-|----------|--------|----------|--------------------------------------|
-| apiUrl   | string | Yes      | The URL of the time API to call      |
+Deze plugin heeft geen configuratie-eigenschappen.
 
 ## Actions
 
-### Time API test action
+### connect parent
 
-Sends a GET request to the configured API URL and returns the timezone response.
+Koppelt het document waarvoor het proces draait aan een parent-document: het huidige document
+krijgt een PARENT-relatie, en het parent-document krijgt een CHILD-relatie terug.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-|           |      |          |             |
+| Parameter        | Type   | Required | Description                                |
+|------------------|--------|----------|---------------------------------------------|
+| parentDocumentId | string | Yes      | Het ID van het document dat als parent moet worden gekoppeld |
 
 ## Usage
 
-Explain how to use the plugin in a process, with examples if applicable.
+Om de plugin te gebruiken, voeg je in je BPMN-proces een service task toe en koppel je hieraan de
+"connect parent"-actie van de Parent Child Plugin. Deze actie wordt uitgevoerd bij de start van de
+service task (`SERVICE_TASK_START`). Je configureert één parameter:
+
+- **parentDocumentId** — het ID van het document dat als bovenliggend (parent) document moet
+  worden gekoppeld.
+
+Het document waarvoor het proces zelf draait (bepaald via de process business key) wordt
+automatisch als kind-document gebruikt; je hoeft dit dus niet apart op te geven. Zodra de service
+task wordt uitgevoerd, roept de plugin de onderliggende `ParentChildService` aan, die
+transactioneel beide documentrelaties (PARENT en CHILD) bijwerkt — mislukt een van beide, dan
+wordt de hele koppeling teruggedraaid.
