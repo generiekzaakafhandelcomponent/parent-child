@@ -1,7 +1,7 @@
 {
     "name": "@valtimo-plugins/parent-child-plugin",
     "license": "EUPL-1.2",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "scripts": {
         "build": "ng build @valtimo-plugins/parent-child-plugin",
         "watch": "ng build @valtimo-plugins/parent-child-plugin --watch"
