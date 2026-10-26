@@ -20,6 +20,7 @@ import com.ritense.plugin.annotation.Plugin
 import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName.SERVICE_TASK_START
+import com.ritense.valtimoplugins.parentchild.client.NodeMapping
 import com.ritense.valtimoplugins.parentchild.client.ParentChildService
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.operaton.bpm.engine.delegate.DelegateExecution
@@ -58,6 +59,26 @@ open class ParentChildPlugin(
         parentChildService.connectParentDocument(
             childDocumentId = execution.processBusinessKey,
             parentDocumentId = parentDocumentId,
+        )
+    }
+
+    /**
+     * Copies the configured nodes of the document the process is running for (the parent) into all of its
+     * CHILD documents.
+     */
+    @PluginAction(
+        key = "sync-to-children",
+        title = "sync to children",
+        description = "Copies the configured nodes of the current document into all of its child documents.",
+        activityTypes = [SERVICE_TASK_START],
+    )
+    open fun syncToChildren(
+        execution: DelegateExecution,
+        @PluginActionProperty mappings: List<NodeMapping>,
+    ) {
+        parentChildService.syncToChildren(
+            parentDocumentId = execution.processBusinessKey,
+            mappings = mappings,
         )
     }
 }

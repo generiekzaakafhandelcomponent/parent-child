@@ -1,0 +1,42 @@
+{
+    "display": "form",
+    "components": [
+        {
+            "key": "html",
+            "type": "htmlelement",
+            "input": false,
+            "label": "Instructions",
+            "content": "Check whether this holiday is booked by enough participants. If not, this task will be offered again so you can check later.",
+            "tableView": false,
+            "refreshOnChange": false
+        },
+        {
+            "key": "pv.enoughParticipants",
+            "type": "radio",
+            "input": true,
+            "label": "Is the holiday booked by enough participants?",
+            "tableView": false,
+            "values": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": "no"
+                }
+            ],
+            "validate": {
+                "required": true
+            }
+        },
+        {
+            "key": "submit",
+            "type": "button",
+            "input": true,
+            "label": "Save",
+            "tableView": false,
+            "disableOnInvalid": true
+        }
+    ]
+}

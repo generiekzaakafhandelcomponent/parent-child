@@ -17,14 +17,23 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {PluginTranslatePipeModule} from "@valtimo/plugin";
-import {FormModule, InputModule as ValtimoInputModule} from "@valtimo/components";
+import {CarbonMultiInputModule, FormModule, InputModule as ValtimoInputModule} from "@valtimo/components";
 import {ParentChildPluginConfigurationComponent} from "./components/parent-child-plugin-configuration/parent-child-plugin-configuration.component";
 import {ParentChildActionConfigurationComponent} from "./components/parent-child-action-configuration/parent-child-action-configuration.component";
+import {SyncToChildrenConfigurationComponent} from "./components/sync-to-children-configuration/sync-to-children-configuration.component";
 
 @NgModule({
-  declarations: [ParentChildPluginConfigurationComponent, ParentChildActionConfigurationComponent],
-  imports: [CommonModule, PluginTranslatePipeModule, FormModule, ValtimoInputModule],
-  exports: [ParentChildPluginConfigurationComponent, ParentChildActionConfigurationComponent],
+  declarations: [
+    ParentChildPluginConfigurationComponent,
+    ParentChildActionConfigurationComponent,
+    SyncToChildrenConfigurationComponent,
+  ],
+  imports: [CommonModule, PluginTranslatePipeModule, FormModule, ValtimoInputModule, CarbonMultiInputModule],
+  exports: [
+    ParentChildPluginConfigurationComponent,
+    ParentChildActionConfigurationComponent,
+    SyncToChildrenConfigurationComponent,
+  ],
 })
 export class ParentChildPluginModule {
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.35.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.35.0">
   <bpmn:collaboration id="Collaboration_1">
     <bpmn:participant id="holiday-participant" name="Holiday Process" processRef="holiday-process" />
   </bpmn:collaboration>
@@ -14,7 +14,7 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1g0j4gm" sourceRef="Gateway_0khy3l1" targetRef="add_activities" />
     <bpmn:endEvent id="end-event" name="Process ended">
-      <bpmn:incoming>Flow_043oqm3</bpmn:incoming>
+      <bpmn:incoming>Flow_0syncend</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:parallelGateway id="Gateway_097rozg">
       <bpmn:incoming>Flow_0oa4pqw</bpmn:incoming>
@@ -23,7 +23,29 @@
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_0oa4pqw" sourceRef="add_activities" targetRef="Gateway_097rozg" />
     <bpmn:sequenceFlow id="Flow_1b9ll74" sourceRef="add_rooms" targetRef="Gateway_097rozg" />
-    <bpmn:sequenceFlow id="Flow_043oqm3" sourceRef="Gateway_097rozg" targetRef="end-event" />
+    <bpmn:sequenceFlow id="Flow_043oqm3" sourceRef="Gateway_097rozg" targetRef="check_participants" />
+    <bpmn:userTask id="check_participants" name="Check participants">
+      <bpmn:incoming>Flow_043oqm3</bpmn:incoming>
+      <bpmn:incoming>Flow_0notenough</bpmn:incoming>
+      <bpmn:outgoing>Flow_0checkgw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0checkgw" sourceRef="check_participants" targetRef="Gateway_enough" />
+    <bpmn:exclusiveGateway id="Gateway_enough" name="Enough participants?">
+      <bpmn:incoming>Flow_0checkgw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0enough</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0notenough</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0enough" name="Yes" sourceRef="Gateway_enough" targetRef="sync_participants">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${enoughParticipants == 'yes'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0notenough" name="No" sourceRef="Gateway_enough" targetRef="check_participants">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${enoughParticipants != 'yes'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="sync_participants" name="Sync participants">
+      <bpmn:incoming>Flow_0enough</bpmn:incoming>
+      <bpmn:outgoing>Flow_0syncend</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0syncend" sourceRef="sync_participants" targetRef="end-event" />
     <bpmn:userTask id="add_activities" name="Add activities">
       <bpmn:incoming>Flow_1g0j4gm</bpmn:incoming>
       <bpmn:outgoing>Flow_0oa4pqw</bpmn:outgoing>
@@ -43,7 +65,7 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
       <bpmndi:BPMNShape id="Participant_1_di" bpmnElement="holiday-participant" isHorizontal="true">
-        <dc:Bounds x="160" y="100" width="830" height="340" />
+        <dc:Bounds x="160" y="100" width="1220" height="340" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="start-event">
         <dc:Bounds x="232" y="182" width="36" height="36" />
@@ -55,10 +77,22 @@
         <dc:Bounds x="650" y="290" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="end-event">
-        <dc:Bounds x="902" y="192" width="36" height="36" />
+        <dc:Bounds x="1292" y="192" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="884" y="235" width="74" height="14" />
+          <dc:Bounds x="1274" y="235" width="74" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="check_participants_di" bpmnElement="check_participants">
+        <dc:Bounds x="900" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_enough_di" bpmnElement="Gateway_enough" isMarkerVisible="true">
+        <dc:Bounds x="1045" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1028" y="155" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sync_participants_di" bpmnElement="sync_participants">
+        <dc:Bounds x="1140" y="170" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1rzlz7p_di" bpmnElement="Gateway_097rozg">
         <dc:Bounds x="795" y="185" width="50" height="50" />
@@ -93,7 +127,31 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_043oqm3_di" bpmnElement="Flow_043oqm3">
         <di:waypoint x="845" y="210" />
-        <di:waypoint x="902" y="210" />
+        <di:waypoint x="900" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0checkgw_di" bpmnElement="Flow_0checkgw">
+        <di:waypoint x="1000" y="210" />
+        <di:waypoint x="1045" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0enough_di" bpmnElement="Flow_0enough">
+        <di:waypoint x="1095" y="210" />
+        <di:waypoint x="1140" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1109" y="192" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0notenough_di" bpmnElement="Flow_0notenough">
+        <di:waypoint x="1070" y="235" />
+        <di:waypoint x="1070" y="290" />
+        <di:waypoint x="950" y="290" />
+        <di:waypoint x="950" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1078" y="255" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0syncend_di" bpmnElement="Flow_0syncend">
+        <di:waypoint x="1240" y="210" />
+        <di:waypoint x="1292" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0px6xzg_di" bpmnElement="Flow_0px6xzg">
         <di:waypoint x="390" y="225" />

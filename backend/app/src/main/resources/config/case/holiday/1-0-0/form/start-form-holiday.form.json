@@ -53,7 +53,10 @@
             "enableTime": false,
             "placeholder": "dd-mm-yyyy",
             "enableMaxDateInput": false,
-            "enableMinDateInput": false
+            "enableMinDateInput": false,
+            "validate": {
+                "required": true
+            }
         },
         {
             "key": "endDate",
@@ -87,7 +90,10 @@
             "enableTime": false,
             "placeholder": "dd-mm-yyyy",
             "enableMaxDateInput": false,
-            "enableMinDateInput": false
+            "enableMinDateInput": false,
+            "validate": {
+                "required": true
+            }
         },
         {
             "key": "description",

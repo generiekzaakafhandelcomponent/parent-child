@@ -23,4 +23,13 @@ interface ParentChildActionConfig {
   parentDocumentId: string;
 }
 
-export {ParentChildPluginConfig, ParentChildActionConfig};
+interface NodeMapping {
+  source: string;
+  target: string;
+}
+
+interface SyncToChildrenConfig {
+  mappings: NodeMapping[];
+}
+
+export {ParentChildPluginConfig, ParentChildActionConfig, NodeMapping, SyncToChildrenConfig};
