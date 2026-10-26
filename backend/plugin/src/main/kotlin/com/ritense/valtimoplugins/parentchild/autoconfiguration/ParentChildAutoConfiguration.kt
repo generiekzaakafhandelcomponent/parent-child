@@ -23,6 +23,7 @@ import com.ritense.valtimoplugins.parentchild.plugin.ParentChildPluginFactory
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
+import org.springframework.transaction.PlatformTransactionManager
 
 @AutoConfiguration
 class ParentChildAutoConfiguration {
@@ -31,7 +32,8 @@ class ParentChildAutoConfiguration {
     @ConditionalOnMissingBean(ParentChildService::class)
     fun parentChildService(
         documentService: DocumentService,
-    ): ParentChildService = ParentChildService(documentService)
+        transactionManager: PlatformTransactionManager,
+    ): ParentChildService = ParentChildService(documentService, transactionManager)
 
     @Bean
     @ConditionalOnMissingBean(ParentChildPluginFactory::class)
