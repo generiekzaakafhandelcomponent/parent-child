@@ -32,5 +32,17 @@
       "actionProperties" : {
         "parentDocumentId": "pv:parentDocId"
       }
+    },
+    {
+      "activityId": "Activity_submit_activities",
+      "activityType": "bpmn:ServiceTask:start",
+      "processLinkType" : "plugin",
+      "pluginConfigurationId" : "47f61ed4-d2b9-4a6a-854e-44e2151cb32a",
+      "pluginActionDefinitionKey" : "sync-to-parent",
+      "actionProperties" : {
+        "mappings": [
+          { "source": "/activities", "target": "/selectedActivities", "merge": true }
+        ]
+      }
     }
 ]

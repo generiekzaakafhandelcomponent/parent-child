@@ -27,6 +27,13 @@
                 "type": "string"
             }
         },
+        "selectedActivities": {
+          "type": "array",
+          "description": "Activities selected during this holiday",
+          "items": {
+            "type": "string"
+          }
+      },
         "hotel": {
             "type": "string",
             "description": "Hotel"

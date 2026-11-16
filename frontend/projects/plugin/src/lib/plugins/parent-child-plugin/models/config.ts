@@ -26,10 +26,15 @@ interface ParentChildActionConfig {
 interface NodeMapping {
   source: string;
   target: string;
+  merge?: boolean;
 }
 
 interface SyncToChildrenConfig {
   mappings: NodeMapping[];
 }
 
-export {ParentChildPluginConfig, ParentChildActionConfig, NodeMapping, SyncToChildrenConfig};
+interface SyncToParentConfig {
+  mappings: NodeMapping[];
+}
+
+export {ParentChildPluginConfig, ParentChildActionConfig, NodeMapping, SyncToChildrenConfig, SyncToParentConfig};

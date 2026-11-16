@@ -17,9 +17,12 @@
 package com.ritense.valtimoplugins.parentchild.client
 
 /**
- * Copies the node at JSON pointer [source] in the parent document to JSON pointer [target] in the child document.
+ * Copies the node at JSON pointer [source] in the source document to JSON pointer [target] in the target document.
+ * With [merge], an array source is added to an existing array target without duplicates instead of replacing it
+ * (only used by sync-to-parent).
  */
 data class NodeMapping(
     val source: String,
     val target: String,
+    val merge: Boolean = false,
 )

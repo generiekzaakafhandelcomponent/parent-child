@@ -18,6 +18,7 @@ package com.ritense.valtimoplugins.parentchild.client
 
 import com.fasterxml.jackson.core.JsonPointer
 import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.node.ArrayNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.ritense.document.domain.impl.JsonSchemaDocumentId
 import com.ritense.document.domain.impl.relation.JsonSchemaDocumentRelation
@@ -105,6 +106,46 @@ class ParentChildService(
         check(failedChildIds.isEmpty()) {
             "Failed to sync parent document $parentDocumentId to child documents $failedChildIds"
         }
+    }
+
+    /**
+     * Copies the child nodes configured in [mappings] into the document [childDocumentId] has a PARENT
+     * relation to. Fails when the child has no or multiple parents, or when a source path does not exist
+     * in the child, before the parent is touched. A mapping with [NodeMapping.merge] adds an array source to an
+     * existing array target without duplicates instead of replacing it.
+     */
+    @Transactional
+    fun syncToParent(
+        childDocumentId: String,
+        mappings: List<NodeMapping>,
+    ) {
+        require(mappings.isNotEmpty()) { "At least one mapping is required" }
+
+        val child = documentService.get(childDocumentId)
+        val parentIds = child.relations().filter { it.relationType() == DocumentRelationType.PARENT }.map { it.id() }
+        check(parentIds.size == 1) {
+            "Expected exactly one PARENT relation on child document $childDocumentId, found ${parentIds.size}"
+        }
+
+        val childContent = child.content().asJson()
+        val parent = documentService.get(parentIds.single().toString())
+        val content = parent.content().asJson().deepCopy<ObjectNode>()
+        mappings.forEach { mapping ->
+            val node =
+                childContent.at(mapping.source).takeUnless { it.isMissingNode }
+                    ?: throw IllegalStateException(
+                        "Source path '${mapping.source}' not found in child document $childDocumentId",
+                    )
+            val existing = content.at(mapping.target)
+            val value: JsonNode =
+                if (mapping.merge && node is ArrayNode && existing is ArrayNode) {
+                    existing.deepCopy().apply { node.forEach { if (it !in this) add(it.deepCopy()) } }
+                } else {
+                    node.deepCopy()
+                }
+            setAt(content, mapping.target, value)
+        }
+        documentService.modifyDocument(parent, content)
     }
 
     private fun syncChild(
