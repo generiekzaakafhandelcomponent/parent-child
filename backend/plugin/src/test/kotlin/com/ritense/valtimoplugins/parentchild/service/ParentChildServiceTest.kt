@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.parentchild.client
+package com.ritense.valtimoplugins.parentchild.service
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper

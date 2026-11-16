@@ -20,8 +20,8 @@ import com.ritense.plugin.annotation.Plugin
 import com.ritense.plugin.annotation.PluginAction
 import com.ritense.plugin.annotation.PluginActionProperty
 import com.ritense.processlink.domain.ActivityTypeWithEventName.SERVICE_TASK_START
-import com.ritense.valtimoplugins.parentchild.client.NodeMapping
-import com.ritense.valtimoplugins.parentchild.client.ParentChildService
+import com.ritense.valtimoplugins.parentchild.service.NodeMapping
+import com.ritense.valtimoplugins.parentchild.service.ParentChildService
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.operaton.bpm.engine.delegate.DelegateExecution
 

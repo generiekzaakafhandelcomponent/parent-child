@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.parentchild.client
+package com.ritense.valtimoplugins.parentchild.service
 
 /**
  * Copies the node at JSON pointer [source] in the source document to JSON pointer [target] in the target document.
