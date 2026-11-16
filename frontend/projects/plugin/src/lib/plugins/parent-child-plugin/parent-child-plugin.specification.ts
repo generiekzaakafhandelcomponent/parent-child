@@ -19,6 +19,7 @@ import {ParentChildPluginConfigurationComponent} from "./components/parent-child
 import {PARENT_CHILD_PLUGIN_LOGO_BASE64} from "./assets";
 import {ParentChildActionConfigurationComponent} from "./components/parent-child-action-configuration/parent-child-action-configuration.component";
 import {SyncToChildrenConfigurationComponent} from "./components/sync-to-children-configuration/sync-to-children-configuration.component";
+import {SyncToParentConfigurationComponent} from "./components/sync-to-parent-configuration/sync-to-parent-configuration.component";
 
 const parentChildPluginSpecification: PluginSpecification = {
   pluginId: "parent-child-plugin",
@@ -27,6 +28,7 @@ const parentChildPluginSpecification: PluginSpecification = {
   functionConfigurationComponents: {
     "connect-parent": ParentChildActionConfigurationComponent,
     "sync-to-children": SyncToChildrenConfigurationComponent,
+    "sync-to-parent": SyncToParentConfigurationComponent,
   },
   pluginTranslations: {
     nl: {
@@ -41,6 +43,13 @@ const parentChildPluginSpecification: PluginSpecification = {
       mappings: "Mapping",
       mappingSource: "Pad in bovenliggend document",
       mappingTarget: "Pad in onderliggend document",
+      "sync-to-parent": "Synchroniseer naar bovenliggend document",
+      syncToParentDescription: "Deze actie kopieert de geconfigureerde onderdelen van het huidige document naar het bovenliggende (PARENT) document. Paden zijn JSON pointers, bijvoorbeeld /destination. Met 'Lijst samenvoegen' wordt een lijst toegevoegd aan de bestaande lijst in het bovenliggende document (zonder dubbelen) in plaats van die te vervangen.",
+      parentMappingSource: "Pad in onderliggend document",
+      parentMappingTarget: "Pad in bovenliggend document",
+      mappingMerge: "Lijst samenvoegen",
+      addMapping: "Mapping toevoegen",
+      deleteMapping: "Verwijderen",
     },
     en: {
       title: "Parent Child Plugin",
@@ -54,6 +63,13 @@ const parentChildPluginSpecification: PluginSpecification = {
       mappings: "Mapping",
       mappingSource: "Path in parent document",
       mappingTarget: "Path in child document",
+      "sync-to-parent": "Sync to parent document",
+      syncToParentDescription: "This action copies the configured nodes of the current document into its parent document. Paths are JSON pointers, for example /destination. With 'Merge list', a list is added to the existing list in the parent document (without duplicates) instead of replacing it.",
+      parentMappingSource: "Path in child document",
+      parentMappingTarget: "Path in parent document",
+      mappingMerge: "Merge list",
+      addMapping: "Add mapping",
+      deleteMapping: "Delete",
     },
   },
 };
