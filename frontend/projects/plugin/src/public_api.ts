@@ -24,3 +24,4 @@ export * from "./lib/plugins/parent-child-plugin/parent-child-plugin.specificati
 export * from "./lib/plugins/parent-child-plugin/components/parent-child-plugin-configuration/parent-child-plugin-configuration.component";
 export * from "./lib/plugins/parent-child-plugin/components/parent-child-action-configuration/parent-child-action-configuration.component";
 export * from "./lib/plugins/parent-child-plugin/components/sync-to-children-configuration/sync-to-children-configuration.component";
+export * from "./lib/plugins/parent-child-plugin/components/sync-to-parent-configuration/sync-to-parent-configuration.component";

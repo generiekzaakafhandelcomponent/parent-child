@@ -18,7 +18,7 @@ package com.ritense.valtimoplugins.parentchild.autoconfiguration
 
 import com.ritense.document.service.DocumentService
 import com.ritense.plugin.service.PluginService
-import com.ritense.valtimoplugins.parentchild.client.ParentChildService
+import com.ritense.valtimoplugins.parentchild.service.ParentChildService
 import com.ritense.valtimoplugins.parentchild.plugin.ParentChildPluginFactory
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean

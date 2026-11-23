@@ -19,7 +19,7 @@ package com.ritense.valtimoplugins.parentchild.plugin
 import com.ritense.plugin.PluginFactory
 import com.ritense.plugin.service.PluginService
 import com.ritense.valtimo.contract.annotation.SkipComponentScan
-import com.ritense.valtimoplugins.parentchild.client.ParentChildService
+import com.ritense.valtimoplugins.parentchild.service.ParentChildService
 import org.springframework.stereotype.Component
 
 /**

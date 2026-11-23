@@ -59,6 +59,15 @@
                                 }
                             },
                             {
+                                "key": "selectedActivities",
+                                "title": "Selected activities",
+                                "value": "doc:/selectedActivities",
+                                "displayProperties": {
+                                    "type": "text",
+                                    "hideWhenEmpty": false
+                                }
+                            },
+                            {
                                 "key": "hotel",
                                 "title": "Hotel",
                                 "value": "doc:/hotel",

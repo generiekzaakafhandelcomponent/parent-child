@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ritense.valtimoplugins.parentchild.client
+package com.ritense.valtimoplugins.parentchild.service
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -128,16 +128,112 @@ class ParentChildServiceTest {
         }
     }
 
+    @Test
+    fun `should copy the mapped child nodes into the parent document`() {
+        val child = document(CHILD_1_ID, """{"name":"Anna","age":30}""", parentIds = listOf(PARENT_ID))
+        val parent = document(PARENT_ID, """{"destination":"Rome","lead":{"phone":"123"}}""")
+
+        parentChildService.syncToParent(
+            CHILD_1_ID,
+            listOf(NodeMapping("/name", "/lead/name"), NodeMapping("/age", "/leadAge")),
+        )
+
+        val contentCaptor = argumentCaptor<JsonNode>()
+        verify(documentService).modifyDocument(eq(parent), contentCaptor.capture())
+        assertEquals(
+            json("""{"destination":"Rome","lead":{"phone":"123","name":"Anna"},"leadAge":30}"""),
+            contentCaptor.firstValue,
+        )
+        verify(documentService, never()).modifyDocument(eq(child), any<JsonNode>())
+    }
+
+    @Test
+    fun `should merge a child array into the parent array without duplicates`() {
+        document(
+            CHILD_1_ID,
+            """{"activities":["diving","hiking","diving"],"tags":["new"],"name":"Anna"}""",
+            parentIds = listOf(PARENT_ID),
+        )
+        val parent = document(PARENT_ID, """{"selectedActivities":["hiking","skiing"],"tags":["old"]}""")
+
+        parentChildService.syncToParent(
+            CHILD_1_ID,
+            listOf(
+                NodeMapping("/activities", "/selectedActivities", merge = true),
+                NodeMapping("/tags", "/tags"),
+                NodeMapping("/name", "/lastName", merge = true),
+            ),
+        )
+
+        val contentCaptor = argumentCaptor<JsonNode>()
+        verify(documentService).modifyDocument(eq(parent), contentCaptor.capture())
+        assertEquals(
+            json("""{"selectedActivities":["hiking","skiing","diving"],"tags":["new"],"lastName":"Anna"}"""),
+            contentCaptor.firstValue,
+        )
+    }
+
+    @Test
+    fun `should set the child array when merging into a parent without that array`() {
+        document(CHILD_1_ID, """{"activities":["diving"]}""", parentIds = listOf(PARENT_ID))
+        val parent = document(PARENT_ID, """{}""")
+
+        parentChildService.syncToParent(
+            CHILD_1_ID,
+            listOf(NodeMapping("/activities", "/selectedActivities", merge = true)),
+        )
+
+        val contentCaptor = argumentCaptor<JsonNode>()
+        verify(documentService).modifyDocument(eq(parent), contentCaptor.capture())
+        assertEquals(json("""{"selectedActivities":["diving"]}"""), contentCaptor.firstValue)
+    }
+
+    @Test
+    fun `should fail when the child has no parent`() {
+        document(CHILD_1_ID, """{"name":"Anna"}""")
+
+        assertThrows<IllegalStateException> {
+            parentChildService.syncToParent(CHILD_1_ID, listOf(NodeMapping("/name", "/name")))
+        }
+
+        verify(documentService, never()).modifyDocument(any<Document>(), any<JsonNode>())
+    }
+
+    @Test
+    fun `should fail when the child has multiple parents`() {
+        document(CHILD_1_ID, """{"name":"Anna"}""", parentIds = listOf(PARENT_ID, CHILD_2_ID))
+
+        assertThrows<IllegalStateException> {
+            parentChildService.syncToParent(CHILD_1_ID, listOf(NodeMapping("/name", "/name")))
+        }
+
+        verify(documentService, never()).modifyDocument(any<Document>(), any<JsonNode>())
+    }
+
+    @Test
+    fun `should not touch the parent when a source path is missing in the child`() {
+        document(CHILD_1_ID, """{"name":"Anna"}""", parentIds = listOf(PARENT_ID))
+        document(PARENT_ID, """{}""")
+
+        assertThrows<IllegalStateException> {
+            parentChildService.syncToParent(CHILD_1_ID, listOf(NodeMapping("/hotel", "/hotel")))
+        }
+
+        verify(documentService, never()).modifyDocument(any<Document>(), any<JsonNode>())
+    }
+
     private fun document(
         id: String,
         content: String,
         vararg childIds: String,
+        parentIds: List<String> = emptyList(),
     ): Document {
         val documentContent: DocumentContent = mock { on { asJson() } doReturn json(content) }
         val relations =
-            childIds
-                .map { JsonSchemaDocumentRelation(JsonSchemaDocumentId.existingId(it), DocumentRelationType.CHILD) }
-                .toSet()
+            (
+                childIds.map { relation(it, DocumentRelationType.CHILD) } +
+                    parentIds.map { relation(it, DocumentRelationType.PARENT) }
+            ).toSet()
         val document: Document =
             mock {
                 on { content() } doReturn documentContent
@@ -146,6 +242,11 @@ class ParentChildServiceTest {
         whenever(documentService.get(id)).thenReturn(document)
         return document
     }
+
+    private fun relation(
+        id: String,
+        type: DocumentRelationType,
+    ) = JsonSchemaDocumentRelation(JsonSchemaDocumentId.existingId(id), type)
 
     private fun json(content: String): JsonNode = objectMapper.readTree(content)
 
