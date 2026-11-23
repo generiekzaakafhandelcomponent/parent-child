@@ -1,0 +1,69 @@
+<!--
+  ~ Copyright 2026 Ritense BV, the Netherlands.
+  ~
+  ~ Licensed under EUPL, Version 1.2 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<p style="margin-bottom: 1.5rem">{{ 'syncToParentDescription' | pluginTranslate: pluginId | async }}</p>
+
+<ng-container *ngIf="{disabled: disabled$ | async} as obs">
+  <cds-label>{{ 'mappings' | pluginTranslate: pluginId | async }}</cds-label>
+
+  <div
+    *ngFor="let mapping of mappings; index as i"
+    style="display: flex; gap: 1rem; align-items: flex-end; margin-bottom: 0.5rem"
+  >
+    <div style="flex: 1">
+      <cds-label *ngIf="i === 0">{{ 'parentMappingSource' | pluginTranslate: pluginId | async }}</cds-label>
+      <input
+        cdsText
+        [attr.aria-label]="'parentMappingSource' | pluginTranslate: pluginId | async"
+        [value]="mapping.source"
+        [disabled]="obs.disabled"
+        (input)="change(i, {source: $any($event.target).value})"
+      />
+    </div>
+
+    <div style="flex: 1">
+      <cds-label *ngIf="i === 0">{{ 'parentMappingTarget' | pluginTranslate: pluginId | async }}</cds-label>
+      <input
+        cdsText
+        [attr.aria-label]="'parentMappingTarget' | pluginTranslate: pluginId | async"
+        [value]="mapping.target"
+        [disabled]="obs.disabled"
+        (input)="change(i, {target: $any($event.target).value})"
+      />
+    </div>
+
+    <cds-checkbox
+      [checked]="mapping.merge"
+      [disabled]="obs.disabled"
+      (checkedChange)="change(i, {merge: $event})"
+    >
+      {{ 'mappingMerge' | pluginTranslate: pluginId | async }}
+    </cds-checkbox>
+
+    <button
+      cdsButton="danger--ghost"
+      type="button"
+      [disabled]="obs.disabled || mappings.length === 1"
+      (click)="remove(i)"
+    >
+      {{ 'deleteMapping' | pluginTranslate: pluginId | async }}
+    </button>
+  </div>
+
+  <button cdsButton="primary" size="sm" type="button" [disabled]="obs.disabled" (click)="add()">
+    {{ 'addMapping' | pluginTranslate: pluginId | async }}
+  </button>
+</ng-container>
